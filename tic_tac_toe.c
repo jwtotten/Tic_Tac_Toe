@@ -71,6 +71,30 @@ int checkFreeSpaces()
 }
 void playerMove()
 {
+    int x;
+    int y;
+
+    do
+    {
+        printf("Enter row number (1-3): ");
+        scanf("%d", &x);
+        x--;
+
+        printf("Enter column number (1-3): ");
+        scanf("%d", &y);
+        y--;
+
+        if(board[x][y] != ' ')
+        {
+            printf("Invalid move");
+        }
+        else
+        {
+            board[x][y] = PLAYER;
+            break;
+        }
+    } while (board[x][y] != ' ');
+    
 
 }
 void computerMove()
