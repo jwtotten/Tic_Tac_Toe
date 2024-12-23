@@ -29,6 +29,19 @@ int main()
 
         playerMove();
         winner = checkWinner();
+
+        if(winner != ' ' || checkFreeSpaces() == 0)
+        {
+            break;
+        }
+
+        computerMove();
+        winner = checkWinner();
+
+        if(winner != ' ' || checkFreeSpaces() == 0)
+        {
+            break;
+        }
         
     }
 
@@ -47,6 +60,7 @@ void resetBoard()
     }
 
 }
+
 void printBoard()
 {
     for(int k = 0; k < 3; k++)
@@ -57,6 +71,7 @@ void printBoard()
         printf("\n---|---|---\n");
     }
 }
+
 int checkFreeSpaces()
 {
     int freeSpaces = 9;
@@ -73,6 +88,7 @@ int checkFreeSpaces()
 
     return freeSpaces;
 }
+
 void playerMove()
 {
     int x;
@@ -101,10 +117,27 @@ void playerMove()
     
 
 }
+
 void computerMove()
 {
+    // generate random number.
+    srand(time(0));
+    int x;
+    int y;
+
+    if(checkFreeSpaces() > 0)
+    {
+        do
+        {
+            x = rand() % 3;
+            y = rand() % 3;
+
+        } while (board[x][y] != ' ');
+        
+    }
 
 }
+
 char checkWinner()
 {
     // Check rows
@@ -138,6 +171,7 @@ char checkWinner()
 
     return ' ';
 }
+
 void printWinner(char winner)
 {
 
