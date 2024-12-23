@@ -135,6 +135,8 @@ char checkWinner()
     {
         return board[0][2];
     }
+
+    return ' ';
 }
 void printWinner(char winner)
 {
