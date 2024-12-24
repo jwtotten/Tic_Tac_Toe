@@ -31,7 +31,8 @@ int main()
         winner = checkWinner();
 
         if(winner != ' ' || checkFreeSpaces() == 0)
-        {
+        {   
+            printBoard();
             printWinner(winner);
             break;
         }
@@ -41,14 +42,11 @@ int main()
 
         if(winner != ' ' || checkFreeSpaces() == 0)
         {
+            printBoard();
             printWinner(winner);
             break;
         }
-
-
-        
     }
-
     return 0;
 }
 
@@ -69,9 +67,7 @@ void printBoard()
 {
     for(int k = 0; k < 3; k++)
     {
-        printf("   |   |   ");
         printf(" %c | %c | %c ", board[k][0], board[k][1], board[k][2]);
-        printf("   |   |   ");
         printf("\n---|---|---\n");
     }
 }
@@ -124,7 +120,7 @@ void playerMove()
 
 void computerMove()
 {
-    // generate random number.
+
     srand(time(0));
     int x;
     int y;
@@ -147,7 +143,7 @@ void computerMove()
 
 char checkWinner()
 {
-    // Check rows
+    // Rows
     for(int i = 0; i < 3; i++)
     {
         if(board[i][0] == board[i][1] && board[i][0] == board[i][2])
@@ -156,7 +152,7 @@ char checkWinner()
         }
     }
 
-    // Check columns
+    // Columns
     for (int i = 0; i < 3; i++)
     {
         if(board[0][i] == board[1][i] && board[0][i] == board[2][i])
@@ -165,7 +161,7 @@ char checkWinner()
         }
     }
 
-    // Check diagonals  
+    // Diagonals  
     if(board[0][0] == board[1][1] && board[0][0] == board[2][2])
     {
         return board[0][0];
