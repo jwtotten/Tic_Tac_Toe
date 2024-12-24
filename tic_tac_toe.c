@@ -32,7 +32,7 @@ int main()
 
         if(winner != ' ' || checkFreeSpaces() == 0)
         {
-            break;
+            printWinner(winner);
         }
 
         computerMove();
@@ -40,8 +40,10 @@ int main()
 
         if(winner != ' ' || checkFreeSpaces() == 0)
         {
-            break;
+            printWinner(winner);
         }
+
+
         
     }
 
@@ -133,7 +135,10 @@ void computerMove()
             y = rand() % 3;
 
         } while (board[x][y] != ' ');
-        
+
+        board[x][y] = COMPUTER;
+
+        // Add more complitcate logic to make the computer smarter.
     }
 
 }
@@ -174,5 +179,16 @@ char checkWinner()
 
 void printWinner(char winner)
 {
-
+    if(winner == PLAYER)
+    {
+        printf("Player wins!");
+    }
+    else if(winner == COMPUTER)
+    {
+        printf("Computer wins!");
+    }
+    else
+    {
+        printf("It's a tie!");
+    }
 }
