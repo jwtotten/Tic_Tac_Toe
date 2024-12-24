@@ -129,19 +129,18 @@ void computerMove()
     if(checkFreeSpaces() > 0)
     {
         // Add more complitcate logic to make the computer smarter.
-
-        checkWinNextMove(PLAYER); // check if the computer can win and then win the game
         
-        checkWinNextMove(COMPUTER); // check if the player can win and block the win
-
-        do{
-            x = rand() % 3;
-            y = rand() % 3;
-
-        } while (board[x][y] != ' ');
+        if (checkWinNextMove(COMPUTER) == ' ') // check if the computer can win and then win the game
+        {
+            do{
+                x = rand() % 3;
+                y = rand() % 3;
+            } while (board[x][y] != ' ');
 
         board[x][y] = COMPUTER;
-        
+
+        } 
+ 
     }
 
 }
@@ -220,6 +219,8 @@ char checkWinNextMove(char value)
         board[1][1] = COMPUTER;
         return COMPUTER;
     }
+
+    return ' ';
 }
 
 char checkWinner()
