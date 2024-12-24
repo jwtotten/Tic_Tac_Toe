@@ -12,6 +12,7 @@ void printBoard();
 int checkFreeSpaces();
 void playerMove();
 void computerMove();
+char checkWinNextMove(char);
 char checkWinner();
 void printWinner(char);
 
@@ -127,18 +128,98 @@ void computerMove()
 
     if(checkFreeSpaces() > 0)
     {
-        do
-        {
+        // Add more complitcate logic to make the computer smarter.
+
+        checkWinNextMove(PLAYER); // check if the computer can win and then win the game
+        
+        checkWinNextMove(COMPUTER); // check if the player can win and block the win
+
+        do{
             x = rand() % 3;
             y = rand() % 3;
 
         } while (board[x][y] != ' ');
 
         board[x][y] = COMPUTER;
-
-        // Add more complitcate logic to make the computer smarter.
+        
     }
 
+}
+
+char checkWinNextMove(char value)
+{
+    // Rows
+    for(int i = 0; i < 3; i++)
+    {
+        if(board[i][0] == value && board[i][1] == value && board[i][2] == ' ')
+        {
+            board[i][2] = COMPUTER;
+            return COMPUTER;
+        }
+        else if(board[i][0] == value && board[i][2] == value && board[i][1] == ' ')
+        {
+            board[i][1] = COMPUTER;
+            return COMPUTER;
+        }
+        else if(board[i][1] == value && board[i][2] == value && board[i][0] == ' ')
+        {
+            board[i][0] = COMPUTER;
+            return COMPUTER;
+        }
+    }
+
+    // Columns
+    for (int i = 0; i < 3; i++)
+    {
+        if(board[0][i] == value && board[1][i] == value && board[2][i] == ' ')
+        {
+            board[2][i] = COMPUTER;
+            return COMPUTER;
+        }
+        else if(board[0][i] == value && board[2][i] == value && board[1][i] == ' ')
+        {
+            board[1][i] = COMPUTER;
+            return COMPUTER;
+        }
+        else if(board[1][i] == value && board[2][i] == value && board[0][i] == ' ')
+        {
+            board[0][i] = COMPUTER;
+            return COMPUTER;
+        }
+    }
+
+    // Diagonals
+    if(board[0][0] == value && board[1][1] == value && board[2][2] == ' ')
+    {
+        board[2][2] = COMPUTER;
+        return COMPUTER;
+    }
+    else if(board[0][0] == value && board[2][2] == value && board[1][1] == ' ')
+    {
+        board[1][1] = COMPUTER;
+        return COMPUTER;
+    }
+    else if(board[1][1] == value && board[2][2] == value && board[0][0] == ' ')
+    {
+        board[0][0] = COMPUTER;
+        return COMPUTER;
+    }
+
+    if(board[0][2] == value && board[1][1] == value && board[2][0] == ' ')
+    {
+        board[2][0] = COMPUTER;
+        return COMPUTER;
+    }
+    else if(board[0][0] == value && board[2][0] == value && board[0][2] == ' ')
+    {
+        board[0][2] = COMPUTER;
+        return COMPUTER;
+    }
+    else if(board[0][2] == value && board[2][0] == value && board[1][1] == ' ')
+    {
+        board[1][1] = COMPUTER;
+        return COMPUTER;
+    }
 }
 
 char checkWinner()
