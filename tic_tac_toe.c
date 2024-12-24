@@ -33,6 +33,7 @@ int main()
         if(winner != ' ' || checkFreeSpaces() == 0)
         {
             printWinner(winner);
+            break;
         }
 
         computerMove();
@@ -41,6 +42,7 @@ int main()
         if(winner != ' ' || checkFreeSpaces() == 0)
         {
             printWinner(winner);
+            break;
         }
 
 
