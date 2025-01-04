@@ -13,6 +13,7 @@ int checkFreeSpaces();
 void playerMove();
 void computerMove();
 char checkWinNextMove(char);
+char checkPlayerWinNextMove(char);
 char checkWinner();
 void printWinner(char);
 
@@ -138,11 +139,15 @@ void computerMove()
             } while (board[x][y] != ' ');
 
         board[x][y] = COMPUTER;
-
         } 
- 
+        else if (checkPlayerWinNextMove(PLAYER) == ' ') // check if the player can win and then block the player
+        {
+            do{
+                x = rand() % 3;
+                y = rand() % 3;
+            } while (board[x][y] != ' ');       
+        }
     }
-
 }
 
 char checkWinNextMove(char value)
@@ -221,6 +226,16 @@ char checkWinNextMove(char value)
     }
 
     return ' ';
+}
+
+char checkPlayerWinNextMove(char value)
+{
+    // Check the player next move would win in a row and block
+
+    // check the player next move would win in a column and block
+
+    // check the player next move would win in a diagonal and block
+
 }
 
 char checkWinner()
