@@ -13,7 +13,6 @@ int checkFreeSpaces();
 void playerMove();
 void computerMove();
 char checkWinNextMove(char);
-char checkPlayerWinNextMove(char);
 char checkWinner();
 void printWinner(char);
 
@@ -140,7 +139,7 @@ void computerMove()
 
         board[x][y] = COMPUTER;
         } 
-        else if (checkPlayerWinNextMove(PLAYER) == ' ') // check if the player can win and then block the player
+        else if (checkWinNextMove(PLAYER) == ' ') // check if the player can win and then block the player
         {
             do{
                 x = rand() % 3;
@@ -157,18 +156,18 @@ char checkWinNextMove(char value)
     {
         if(board[i][0] == value && board[i][1] == value && board[i][2] == ' ')
         {
-            board[i][2] = COMPUTER;
-            return COMPUTER;
+            board[i][2] = value;
+            return value;
         }
         else if(board[i][0] == value && board[i][2] == value && board[i][1] == ' ')
         {
-            board[i][1] = COMPUTER;
-            return COMPUTER;
+            board[i][1] = value;
+            return value;
         }
         else if(board[i][1] == value && board[i][2] == value && board[i][0] == ' ')
         {
-            board[i][0] = COMPUTER;
-            return COMPUTER;
+            board[i][0] = value;
+            return value;
         }
     }
 
@@ -177,65 +176,55 @@ char checkWinNextMove(char value)
     {
         if(board[0][i] == value && board[1][i] == value && board[2][i] == ' ')
         {
-            board[2][i] = COMPUTER;
-            return COMPUTER;
+            board[2][i] = value;
+            return value;
         }
         else if(board[0][i] == value && board[2][i] == value && board[1][i] == ' ')
         {
-            board[1][i] = COMPUTER;
-            return COMPUTER;
+            board[1][i] = value;
+            return value;
         }
         else if(board[1][i] == value && board[2][i] == value && board[0][i] == ' ')
         {
-            board[0][i] = COMPUTER;
-            return COMPUTER;
+            board[0][i] = value;
+            return value;
         }
     }
 
     // Diagonals
     if(board[0][0] == value && board[1][1] == value && board[2][2] == ' ')
     {
-        board[2][2] = COMPUTER;
-        return COMPUTER;
+        board[2][2] = value;
+        return value;
     }
     else if(board[0][0] == value && board[2][2] == value && board[1][1] == ' ')
     {
-        board[1][1] = COMPUTER;
-        return COMPUTER;
+        board[1][1] = value;
+        return value;
     }
     else if(board[1][1] == value && board[2][2] == value && board[0][0] == ' ')
     {
-        board[0][0] = COMPUTER;
-        return COMPUTER;
+        board[0][0] = value;
+        return value;
     }
 
     if(board[0][2] == value && board[1][1] == value && board[2][0] == ' ')
     {
-        board[2][0] = COMPUTER;
-        return COMPUTER;
+        board[2][0] = value;
+        return value;
     }
     else if(board[0][0] == value && board[2][0] == value && board[0][2] == ' ')
     {
-        board[0][2] = COMPUTER;
-        return COMPUTER;
+        board[0][2] = value;
+        return value;
     }
     else if(board[0][2] == value && board[2][0] == value && board[1][1] == ' ')
     {
-        board[1][1] = COMPUTER;
-        return COMPUTER;
+        board[1][1] = value;
+        return value;
     }
 
     return ' ';
-}
-
-char checkPlayerWinNextMove(char value)
-{
-    // Check the player next move would win in a row and block
-
-    // check the player next move would win in a column and block
-
-    // check the player next move would win in a diagonal and block
-
 }
 
 char checkWinner()
