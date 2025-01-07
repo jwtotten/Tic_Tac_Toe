@@ -12,7 +12,7 @@ void printBoard();
 int checkFreeSpaces();
 void playerMove();
 void computerMove();
-char checkWinNextMove(char);
+char checkWinNextMove(char, char);
 char checkWinner();
 void printWinner(char);
 
@@ -128,9 +128,8 @@ void computerMove()
 
     if(checkFreeSpaces() > 0)
     {
-        // Add more complitcate logic to make the computer smarter.
-        
-        if (checkWinNextMove(COMPUTER) == ' ') // check if the computer can win and then win the game
+        // check if the computer can win and then win the game, aslso check if player can win and block them.
+        if (checkWinNextMove(COMPUTER, COMPUTER) == ' ' && checkWinNextMove(PLAYER, COMPUTER) == ' ') 
         {
             do{
                 x = rand() % 3;
@@ -139,35 +138,28 @@ void computerMove()
 
         board[x][y] = COMPUTER;
         } 
-        else if (checkWinNextMove(PLAYER) == ' ') // check if the player can win and then block the player
-        {
-            do{
-                x = rand() % 3;
-                y = rand() % 3;
-            } while (board[x][y] != ' ');       
-        }
     }
 }
 
-char checkWinNextMove(char value)
+char checkWinNextMove(char value, char computer)
 {
     // Rows
     for(int i = 0; i < 3; i++)
     {
         if(board[i][0] == value && board[i][1] == value && board[i][2] == ' ')
         {
-            board[i][2] = value;
-            return value;
+            board[i][2] = computer;
+            return computer;
         }
         else if(board[i][0] == value && board[i][2] == value && board[i][1] == ' ')
         {
-            board[i][1] = value;
-            return value;
+            board[i][1] = computer;
+            return computer;
         }
         else if(board[i][1] == value && board[i][2] == value && board[i][0] == ' ')
         {
-            board[i][0] = value;
-            return value;
+            board[i][0] = computer;
+            return computer;
         }
     }
 
@@ -176,52 +168,52 @@ char checkWinNextMove(char value)
     {
         if(board[0][i] == value && board[1][i] == value && board[2][i] == ' ')
         {
-            board[2][i] = value;
-            return value;
+            board[2][i] = computer;
+            return computer;
         }
         else if(board[0][i] == value && board[2][i] == value && board[1][i] == ' ')
         {
-            board[1][i] = value;
-            return value;
+            board[1][i] = computer;
+            return computer;
         }
         else if(board[1][i] == value && board[2][i] == value && board[0][i] == ' ')
         {
-            board[0][i] = value;
-            return value;
+            board[0][i] = computer;
+            return computer;
         }
     }
 
     // Diagonals
     if(board[0][0] == value && board[1][1] == value && board[2][2] == ' ')
     {
-        board[2][2] = value;
-        return value;
+        board[2][2] = computer;
+        return computer;
     }
     else if(board[0][0] == value && board[2][2] == value && board[1][1] == ' ')
     {
-        board[1][1] = value;
-        return value;
+        board[1][1] = computer;
+        return computer;
     }
     else if(board[1][1] == value && board[2][2] == value && board[0][0] == ' ')
     {
-        board[0][0] = value;
-        return value;
+        board[0][0] = computer;
+        return computer;
     }
 
     if(board[0][2] == value && board[1][1] == value && board[2][0] == ' ')
     {
-        board[2][0] = value;
-        return value;
+        board[2][0] = computer;
+        return computer;
     }
     else if(board[0][0] == value && board[2][0] == value && board[0][2] == ' ')
     {
-        board[0][2] = value;
-        return value;
+        board[0][2] = computer;
+        return computer;
     }
     else if(board[0][2] == value && board[2][0] == value && board[1][1] == ' ')
     {
-        board[1][1] = value;
-        return value;
+        board[1][1] = computer;
+        return computer;
     }
 
     return ' ';
